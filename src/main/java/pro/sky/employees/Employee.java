@@ -7,9 +7,9 @@ public class Employee {
     private String firstName;
     private String lastName;
 
-    public Employee(String name, String surname) {
-        this.firstName = name;
-        this.lastName = surname;
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
@@ -20,11 +20,11 @@ public class Employee {
         return lastName;
     }
 
-    public String name() {
+    public String firstName() {
         return firstName;
     }
 
-    public String surname() {
+    public String lastName() {
         return lastName;
     }
 
