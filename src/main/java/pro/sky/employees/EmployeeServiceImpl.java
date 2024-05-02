@@ -2,34 +2,31 @@ package pro.sky.employees;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
-    public final List<Employee> employees;
+    public final Map<String, Employee> employees;
 
     public EmployeeServiceImpl() {
-        this.employees = new ArrayList<>();
+        this.employees = new HashMap<>();
     }
 
     @Override
     public Employee add(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if(employees.contains(employee)){
+        if(employees.containsKey(employee.getKey())){
             throw new EmployeeAlreadyAddedException();
         }
-        employees.add(employee);
+        employees.put(employee.getKey(), employee);
         return employee;
     }
 
     @Override
     public Employee remove(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if(employees.contains(employee)){
-            employees.remove(employee);
+        if(employees.containsKey(employee.getKey())){
+            employees.remove(employee.getKey(), employee);
         }
         throw new EmployeeNotFoundException();
     }
@@ -37,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee find(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if(employees.contains(employee)){
+        if(employees.containsKey(employee.getKey())){
             return employee;
         }
        throw new EmployeeNotFoundException();
@@ -45,6 +42,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Collection<Employee> findAll() {
-        return Collections.unmodifiableList(employees);
+        return employees.values();
     }
 }

@@ -4,12 +4,18 @@ import java.util.Objects;
 
 public class Employee {
 
+    private final String key;
     private String firstName;
     private String lastName;
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        key = firstName + " " + lastName;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public String getFirstName() {
