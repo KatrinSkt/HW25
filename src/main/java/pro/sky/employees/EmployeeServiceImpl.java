@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Employee remove(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
         if(employees.containsKey(employee.getKey())){
-            employees.remove(employee.getKey(), employee);
+            return employees.remove(employee.getKey());
         }
         throw new EmployeeNotFoundException();
     }
@@ -42,6 +42,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Collection<Employee> findAll() {
-        return employees.values();
+        return Collections.unmodifiableCollection(employees.values());
     }
 }
