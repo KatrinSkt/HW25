@@ -1,21 +1,27 @@
 package pro.sky.employees;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Employee {
 
-    private final String key;
     private String firstName;
     private String lastName;
 
+    private int salary;
+    private int departmentId;
+
+
     public Employee(String firstName, String lastName) {
+        Random random = new Random();
         this.firstName = firstName;
         this.lastName = lastName;
-        key = firstName + " " + lastName;
+        this.salary = random.nextInt(100000) + 30000;
+        this.departmentId = random.nextInt(5) + 1;
     }
 
-    public String getKey() {
-        return key;
+    public String doKey() {
+        return firstName + " " + lastName;
     }
 
     public String getFirstName() {
@@ -34,6 +40,13 @@ public class Employee {
         return lastName;
     }
 
+    public int getSalary() {
+        return salary;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
 
     @Override
     public boolean equals(Object o) {
