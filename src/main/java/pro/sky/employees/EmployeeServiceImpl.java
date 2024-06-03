@@ -6,38 +6,44 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
-    public final Map<String, Employee> employees;
-
-    public EmployeeServiceImpl() {
-        this.employees = new HashMap<>();
+    public Map<String, Employee> employees;
+    private ValidationService validationService;
+    public void EmployeeService(ValidationService validationService) {
+        this.validationService = validationService;
     }
 
     @Override
     public Employee add(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if(employees.containsKey(employee.getKey())){
+        firstName = validationService.validateCheckName(firstName);
+        lastName = validationService.validateCheckName(lastName);
+        String key = doKey(firstName, lastName);
+        if(employees.containsKey(key)){
             throw new EmployeeAlreadyAddedException();
         }
-        employees.put(employee.getKey(), employee);
+        Employee employee = new Employee(firstName, lastName);
+        employees.put(key, employee);
         return employee;
     }
 
     @Override
     public Employee remove(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if(employees.containsKey(employee.getKey())){
-            return employees.remove(employee.getKey());
+        String key = doKey(firstName, lastName);
+        if(!employees.containsKey(key)){
+            throw new EmployeeNotFoundException();
         }
-        throw new EmployeeNotFoundException();
+        return employees.remove(key);
     }
 
     @Override
     public Employee find(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if(employees.containsKey(employee.getKey())){
-            return employee;
+        String key = doKey(firstName, lastName);
+        if(!employees.containsKey(key)){
+            throw new EmployeeNotFoundException();
         }
-       throw new EmployeeNotFoundException();
+       return employees.get(key);
+    }
+    public String doKey(String firstName, String lastName) {
+        return firstName + " " + lastName;
     }
 
     @Override
