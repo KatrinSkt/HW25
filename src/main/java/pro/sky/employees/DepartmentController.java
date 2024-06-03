@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
 @RestController
 @RequestMapping("/departments")
 public class DepartmentController {
-    private final DepartmentServiceImpl departmentService;
+    private final DepartmentService departmentService;
 
-    public DepartmentController(DepartmentServiceImpl departmentService) {
+    public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
     @GetMapping("/max-salary")
