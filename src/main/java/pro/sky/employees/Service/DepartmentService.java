@@ -1,4 +1,6 @@
-package pro.sky.employees;
+package pro.sky.employees.Service;
+
+import pro.sky.employees.Employee;
 
 import java.util.Collection;
 import java.util.List;
