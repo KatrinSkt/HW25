@@ -1,10 +1,12 @@
-package pro.sky.employees;
+package pro.sky.employees.Controllers;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.employees.Employee;
+import pro.sky.employees.Service.EmployeeServiceImpl;
 
 import java.util.Collection;
 @RestController

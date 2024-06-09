@@ -1,6 +1,8 @@
-package pro.sky.employees;
+package pro.sky.employees.Service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.employees.Employee;
+import pro.sky.employees.Exceptions.EmployeeNotFoundException;
 
 import java.util.Collection;
 import java.util.List;

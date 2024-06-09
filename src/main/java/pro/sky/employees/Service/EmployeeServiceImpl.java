@@ -1,11 +1,14 @@
-package pro.sky.employees;
+package pro.sky.employees.Service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.employees.Employee;
+import pro.sky.employees.Exceptions.EmployeeAlreadyAddedException;
+import pro.sky.employees.Exceptions.EmployeeNotFoundException;
 
 import java.util.*;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
     public Map<String, Employee> employees;
     private ValidationService validationService;
     public void EmployeeService(ValidationService validationService) {
