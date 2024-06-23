@@ -1,25 +1,21 @@
 package pro.sky.employees;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class Employee {
-    Random random = new Random();
+
     private final String firstName;
     private final String lastName;
+    private final int salary;
+    private final int departmentId;
 
-    private int salary = random.nextInt(100000) + 30000;
-    private int departmentId = random.nextInt(5) + 1;
-
-
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, int salary, int departmentId) {
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
         this.departmentId = departmentId;
     }
-
 
 
     public String getFirstName() {
