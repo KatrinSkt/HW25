@@ -30,7 +30,7 @@ public class EmployeesServiceTest {
 
     @AfterEach
     public void afterEach() {
-        employeeService.findAll().forEach(Employee -> employeeService.remove(Employee.getFirstName(), Employee.getLastName()));
+        employeeService.findAll().forEach(employee -> employeeService.remove(employee.getFirstName(), employee.getLastName()));
     }
 
     @Test
@@ -52,8 +52,6 @@ public class EmployeesServiceTest {
 
     @Test
     public void addNegativeTest2() {
-        employeeService.add("Андрей", "Иванов", 50_000, 3);
-        employeeService.add("Артем", "Иванов", 80_000, 2);
         assertThatExceptionOfType(EmployeeAlreadyAddedException.class)
                 .isThrownBy(() -> employeeService.add("Иван", "Иванов", 50_000, 1));
     }
@@ -92,7 +90,6 @@ public class EmployeesServiceTest {
 
     @Test
     public void findAllTest() {
-        Employee expected = new Employee("Иван", "Иванов", 50_000, 1);
         assertThat(employeeService.findAll())
                 .containsExactlyInAnyOrderElementsOf(employees);
 
